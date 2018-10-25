@@ -1,6 +1,8 @@
-var React = require('react');
-var TodoList = require('TodoList');
-var AddTodo = require('AddTodo');
+const React = require('react');
+const TodoList = require('TodoList');
+const AddTodo = require('AddTodo');
+const TodoSearch = require('TodoSearch');
+
 
 class TodoApp extends React.Component {
     constructor(props) {
@@ -32,10 +34,11 @@ class TodoApp extends React.Component {
     }
 
     render = () => {
-        var {todos} = this.state;
+        const {todos} = this.state;
 
         return (
             <div>
+                <TodoSearch/>
                 <TodoList todos={todos}/>
                 <AddTodo onAddTodo={this.handleAddTodo}/>
             </div>

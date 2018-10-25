@@ -24913,6 +24913,7 @@
 	var React = __webpack_require__(8);
 	var TodoList = __webpack_require__(224);
 	var AddTodo = __webpack_require__(226);
+	var TodoSearch = __webpack_require__(231);
 
 	var TodoApp = function (_React$Component) {
 	    _inherits(TodoApp, _React$Component);
@@ -24933,6 +24934,7 @@
 	            return React.createElement(
 	                'div',
 	                null,
+	                React.createElement(TodoSearch, null),
 	                React.createElement(TodoList, { todos: todos }),
 	                React.createElement(AddTodo, { onAddTodo: _this.handleAddTodo })
 	            );
@@ -25480,6 +25482,40 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var React = __webpack_require__(8);
+
+	var TodoSearch = function (_React$Component) {
+	    _inherits(TodoSearch, _React$Component);
+
+	    function TodoSearch(props) {
+	        _classCallCheck(this, TodoSearch);
+
+	        var _this = _possibleConstructorReturn(this, (TodoSearch.__proto__ || Object.getPrototypeOf(TodoSearch)).call(this, props));
+
+	        _this.render = function () {
+	            return React.createElement('div', null);
+	        };
+
+	        return _this;
+	    }
+
+	    return TodoSearch;
+	}(React.Component);
+
+	module.exports = TodoSearch;
 
 /***/ })
 /******/ ]);
