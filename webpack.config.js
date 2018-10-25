@@ -23,6 +23,7 @@ module.exports = {
     },
     resolve: {
         root: __dirname,
+        // substitute used for alias.
         modulesDirectories: [
             'node_modules',
             'components'
