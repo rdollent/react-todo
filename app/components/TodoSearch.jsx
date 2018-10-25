@@ -9,6 +9,7 @@ class TodoSearch extends React.Component {
         return (
             <div>
                 from c9!
+                from local!
             </div>
 
         )

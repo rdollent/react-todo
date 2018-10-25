@@ -114,7 +114,7 @@
 
 	// app css
 	// comment this out for webpack to work
-	__webpack_require__(227);
+	__webpack_require__(228);
 	// require('applicationStyles');
 
 	ReactDOM.render(React.createElement(TodoApp, null), document.querySelector("#app"));
@@ -24913,7 +24913,7 @@
 	var React = __webpack_require__(8);
 	var TodoList = __webpack_require__(224);
 	var AddTodo = __webpack_require__(226);
-	var TodoSearch = __webpack_require__(231);
+	var TodoSearch = __webpack_require__(227);
 
 	var TodoApp = function (_React$Component) {
 	    _inherits(TodoApp, _React$Component);
@@ -25137,13 +25137,51 @@
 /* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var React = __webpack_require__(8);
+
+	var TodoSearch = function (_React$Component) {
+	    _inherits(TodoSearch, _React$Component);
+
+	    function TodoSearch(props) {
+	        _classCallCheck(this, TodoSearch);
+
+	        var _this = _possibleConstructorReturn(this, (TodoSearch.__proto__ || Object.getPrototypeOf(TodoSearch)).call(this, props));
+
+	        _this.render = function () {
+	            return React.createElement(
+	                'div',
+	                null,
+	                'from c9! from local!'
+	            );
+	        };
+
+	        return _this;
+	    }
+
+	    return TodoSearch;
+	}(React.Component);
+
+	module.exports = TodoSearch;
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(228);
+	var content = __webpack_require__(229);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(230)(content, {});
+	var update = __webpack_require__(231)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -25160,10 +25198,10 @@
 	}
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(229)();
+	exports = module.exports = __webpack_require__(230)();
 	// imports
 
 
@@ -25174,7 +25212,7 @@
 
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports) {
 
 	/*
@@ -25230,7 +25268,7 @@
 
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -25482,40 +25520,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ }),
-/* 231 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var React = __webpack_require__(8);
-
-	var TodoSearch = function (_React$Component) {
-	    _inherits(TodoSearch, _React$Component);
-
-	    function TodoSearch(props) {
-	        _classCallCheck(this, TodoSearch);
-
-	        var _this = _possibleConstructorReturn(this, (TodoSearch.__proto__ || Object.getPrototypeOf(TodoSearch)).call(this, props));
-
-	        _this.render = function () {
-	            return React.createElement('div', null);
-	        };
-
-	        return _this;
-	    }
-
-	    return TodoSearch;
-	}(React.Component);
-
-	module.exports = TodoSearch;
 
 /***/ })
 /******/ ]);
