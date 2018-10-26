@@ -6,11 +6,12 @@ class TodoSearch extends React.Component {
     }
 
     handleSearch = () => {
-        // if box is checked, true. if not, false.
+        // if box is checked, return value is true. if not, false.
         const showCompleted = this.refs.showCompleted.checked;
         const searchText = this.refs.searchText.value;
 
-        
+        // call prop method that gets passed down
+        this.props.onSearch(showCompleted, searchText);
     }
     render = () => {
         return (
@@ -21,6 +22,7 @@ class TodoSearch extends React.Component {
                 <div>
                     <label htmlFor="">
                         <input type="checkbox" ref="showCompleted" onChange={this.handleSearch}/>
+                        Show completed todos
                     </label>
                 </div>
             </div>

@@ -8,6 +8,8 @@ class TodoApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            showCompleted: false,
+            searchText: '',
             todos: [
                 {
                     id: 1,
@@ -32,13 +34,23 @@ class TodoApp extends React.Component {
     handleAddTodo = (text) => {
         alert('new todo: ' + text);
     }
+    
+    handleSearch = (showCompleted, searchText) => {
+        // set state
+        this.setState({
+            showCompleted: showCompleted,
+            searchText: searchText.toLowerCase()
+        });
+        // note: setState is asynchronous!
+        // console.log(this.state);
+    }
 
     render = () => {
         const {todos} = this.state;
 
         return (
             <div>
-                <TodoSearch/>
+                <TodoSearch onSearch={this.handleSearch}/>
                 <TodoList todos={todos}/>
                 <AddTodo onAddTodo={this.handleAddTodo}/>
             </div>
