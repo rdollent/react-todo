@@ -14,3 +14,20 @@ const grpB = ['Mike', 'Mary'];
 const final = [...grpA, ...grpB];
 
 console.log(final);
+
+const person = ['Jun', 29];
+const person2 = ['She', 25];
+
+
+const phrase = (name,age) => {
+    console.log(`Hello ${name}, you are ${age}`);
+}
+
+phrase(...person);
+
+const names = ['Mike', 'Ben'];
+const namesAll = ['Jun', ...names];
+
+for(i in namesAll) {
+    console.log(`Hi ${namesAll[i]}`);
+}
