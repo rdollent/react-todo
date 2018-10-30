@@ -24,6 +24,7 @@ const phrase = (name,age) => {
 }
 
 phrase(...person);
+phrase(...person2);
 
 const names = ['Mike', 'Ben'];
 const namesAll = ['Jun', ...names];
