@@ -26,7 +26,8 @@ module.exports = {
         // substitute used for alias.
         modulesDirectories: [
             'node_modules',
-            'components'
+            'components',
+            'api'
         ],
         alias: {
             applicationStyles: "app/styles/app.scss"

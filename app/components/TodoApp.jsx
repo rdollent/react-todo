@@ -2,9 +2,11 @@ const React = require('react');
 const TodoList = require('TodoList');
 const AddTodo = require('AddTodo');
 const TodoSearch = require('TodoSearch');
+
 // used to generate unique ids for todos
 const uuid = require('node-uuid');
 
+const TodoAPI = require('TodoAPI');
 
 class TodoApp extends React.Component {
     constructor(props) {
@@ -12,29 +14,16 @@ class TodoApp extends React.Component {
         this.state = {
             showCompleted: false,
             searchText: '',
-            todos: [
-                {
-                    id: uuid(),
-                    text: 'walk the dog',
-                    completed: false
-                },
-                {
-                    id: uuid(),
-                    text: 'clean the yard',
-                    completed: true
-                },
-                {
-                    id: uuid(),
-                    text: 'play video games',
-                    completed: true
-                },
-                {
-                    id: uuid(),
-                    text: 'learn web dev',
-                    completed: false
-                }
-            ]
+            // start app with what is stored in localStorage
+            todos: TodoAPI.getTodos()
         }
+    }
+    
+    //lifecycle method
+    componentDidUpdate = () => {
+        // for each time we change state,
+        // this will pass the new todos to TodoAPI
+        TodoAPI.setTodos(this.state.todos);
     }
 
     handleAddTodo = (text) => {
