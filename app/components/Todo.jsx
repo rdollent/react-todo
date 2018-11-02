@@ -10,10 +10,13 @@ class Todo extends React.Component {
         // which means for every todo
         // there are id and text object props in this.props
         // use es6 destructuring
-        var {id, text} = this.props;
+        const {id, text, completed} = this.props;
         return (
-            <div>
-                {id}. {text}
+            <div onClick={() => {
+                this.props.onToggle(id);
+            }}>
+                <input type="checkbox" checked={completed}/>
+                {text}
             </div>
         )
     }

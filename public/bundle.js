@@ -24933,7 +24933,8 @@
 	                todos: [].concat(_toConsumableArray(_this.state.todos), [{
 	                    // use node-uuid to generate unique id
 	                    id: uuid(),
-	                    text: text
+	                    text: text,
+	                    completed: false
 	                }])
 	            });
 	        };
@@ -24948,6 +24949,25 @@
 	            // console.log(this.state);
 	        };
 
+	        _this.handleToggle = function (id) {
+	            // go through all todos and see which matches id
+	            // from onToggle props
+	            // return an updated todos array
+	            var updatedTodos = _this.state.todos.map(function (todo) {
+	                if (todo.id === id) {
+	                    // toggle completed state of todo
+	                    // opposite of what's stored i.e. true to false, false to true
+	                    // if identical ids
+	                    todo.completed = !todo.completed;
+	                }
+
+	                return todo;
+	            });
+
+	            // then set state
+	            _this.setState({ todos: updatedTodos });
+	        };
+
 	        _this.render = function () {
 	            var todos = _this.state.todos;
 
@@ -24956,7 +24976,7 @@
 	                'div',
 	                null,
 	                React.createElement(TodoSearch, { onSearch: _this.handleSearch }),
-	                React.createElement(TodoList, { todos: todos }),
+	                React.createElement(TodoList, { todos: todos, onToggle: _this.handleToggle }),
 	                React.createElement(AddTodo, { onAddTodo: _this.handleAddTodo })
 	            );
 	        };
@@ -24966,16 +24986,20 @@
 	            searchText: '',
 	            todos: [{
 	                id: uuid(),
-	                text: 'walk the dog'
+	                text: 'walk the dog',
+	                completed: false
 	            }, {
 	                id: uuid(),
-	                text: 'clean the yard'
+	                text: 'clean the yard',
+	                completed: true
 	            }, {
 	                id: uuid(),
-	                text: 'play video games'
+	                text: 'play video games',
+	                completed: true
 	            }, {
 	                id: uuid(),
-	                text: 'learn web dev'
+	                text: 'learn web dev',
+	                completed: false
 	            }]
 	        };
 	        return _this;
@@ -25017,6 +25041,8 @@
 	    _createClass(TodoList, [{
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+
 	            var todos = this.props.todos;
 
 	            var renderTodos = function renderTodos() {
@@ -25028,7 +25054,7 @@
 	                    // we use {id} key which we set in initial prop
 	                    // spread operator lets you spread out content of each object
 
-	                    return React.createElement(Todo, _extends({ key: todo.id }, todo));
+	                    return React.createElement(Todo, _extends({ key: todo.id }, todo, { onToggle: _this2.props.onToggle }));
 	                });
 	            };
 	            console.log(todos);
@@ -25049,7 +25075,7 @@
 /* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -25071,21 +25097,25 @@
 	    }
 
 	    _createClass(Todo, [{
-	        key: 'render',
+	        key: "render",
 	        value: function render() {
+	            var _this2 = this;
+
 	            // spread operator {...todo} es6 passed down
 	            // which means for every todo
 	            // there are id and text object props in this.props
 	            // use es6 destructuring
 	            var _props = this.props,
 	                id = _props.id,
-	                text = _props.text;
+	                text = _props.text,
+	                completed = _props.completed;
 
 	            return React.createElement(
-	                'div',
-	                null,
-	                id,
-	                '. ',
+	                "div",
+	                { onClick: function onClick() {
+	                        _this2.props.onToggle(id);
+	                    } },
+	                React.createElement("input", { type: "checkbox", checked: completed }),
 	                text
 	            );
 	        }

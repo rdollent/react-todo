@@ -18,7 +18,7 @@ class TodoList extends React.Component {
                 // spread operator lets you spread out content of each object
                 
                 return (
-                    <Todo key={todo.id} {...todo}/>
+                    <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
                 )
             })
         };
