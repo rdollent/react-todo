@@ -2,6 +2,8 @@ const React = require('react');
 const TodoList = require('TodoList');
 const AddTodo = require('AddTodo');
 const TodoSearch = require('TodoSearch');
+// used to generate unique ids for todos
+const uuid = require('node-uuid');
 
 
 class TodoApp extends React.Component {
@@ -12,19 +14,19 @@ class TodoApp extends React.Component {
             searchText: '',
             todos: [
                 {
-                    id: 1,
+                    id: uuid(),
                     text: 'walk the dog'
                 },
                 {
-                    id: 2,
+                    id: uuid(),
                     text: 'clean the yard'
                 },
                 {
-                    id: 3,
+                    id: uuid(),
                     text: 'play video games'
                 },
                 {
-                    id: 4,
+                    id: uuid(),
                     text: 'learn web dev'
                 }
             ]
@@ -32,7 +34,18 @@ class TodoApp extends React.Component {
     }
 
     handleAddTodo = (text) => {
-        alert('new todo: ' + text);
+        this.setState({
+            // todos will always be an array
+            todos: [
+                // pass in the original todo array
+                ...this.state.todos,
+                {
+                    // use node-uuid to generate unique id
+                    id: uuid(),
+                    text: text
+                }
+            ]
+        })
     }
     
     handleSearch = (showCompleted, searchText) => {
