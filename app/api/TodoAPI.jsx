@@ -31,6 +31,29 @@ module.exports = {
         }
         
         return (Array.isArray(todos)) ? todos : [];
+    },
+    // take array of todos and filter, and return a subset of that array
+    // if Show Completed Todos is checked i.e. completed === true in state, then
+    // will only show todos that have completed === true.
+    // note: todos format: [{ id: 123, text: 'hi', completed: false}];
+    filterTodos: (todos, showCompleted, searchText) =>  {
+        // when it fails, just return original todos array
+        let filteredTodos = todos;
         
+        // use Array.filter methods
+        // filter by showCompleted
+        filteredTodos = filteredTodos.filter((todo) => {
+            // items with completed === false
+            // we want to show non-completed items by default
+            // but if showCompleted is checked, we are going to return every single item
+            // note that showCompleted is in the state
+            return !todo.completed || showCompleted;
+            
+        });
+        // filter by searchText
+        
+        // Sort todos with non-completed first
+        
+        return filteredTodos;
     }
 };

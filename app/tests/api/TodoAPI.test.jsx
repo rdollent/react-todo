@@ -80,5 +80,9 @@ describe('TodoAPI', () => {
         })
 
     });
+    
+    describe('filterTodos', () => {
+        
+    })
 
 })
