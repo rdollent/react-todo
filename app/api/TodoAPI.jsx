@@ -21,16 +21,16 @@ module.exports = {
         // gets called when we start app
         const stringTodos = localStorage.getItem('todos');
         // set a default todos array that can be returned when localStorage.getItem() fails
-        const todos = [];
+        let todos = [];
         
         // try-catch
         try {
-            
+            todos = JSON.parse(stringTodos);
         } catch (e) {
             
         }
         
-        
+        return (Array.isArray(todos)) ? todos : [];
         
     }
 };

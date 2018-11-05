@@ -26,8 +26,10 @@ describe('Todo', () => {
        
        // simulate click even and check if spy was called or not
        //pull out element and simulate a click event
-       const el = ReactDOM.findDOMNode(todo);
-       TestUtils.Simulate.click(el.querySelector('div'));
+       let el = ReactDOM.findDOMNode(todo);
+       // console.log(el);
+       // el.querySelect('div') does not work because el itself is the div we need to click!!!
+       TestUtils.Simulate.click(el);
        // check if spy was called with id 199
        expect(spy).toHaveBeenCalledWith(199);
      

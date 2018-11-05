@@ -114,7 +114,7 @@
 
 	// app css
 	// comment this out for webpack to work
-	__webpack_require__(289);
+	__webpack_require__(290);
 	// require('applicationStyles');
 
 	ReactDOM.render(React.createElement(TodoApp, null), document.querySelector("#app"));
@@ -24916,8 +24916,11 @@
 	var TodoList = __webpack_require__(224);
 	var AddTodo = __webpack_require__(226);
 	var TodoSearch = __webpack_require__(227);
+
 	// used to generate unique ids for todos
 	var uuid = __webpack_require__(228);
+
+	var TodoAPI = __webpack_require__(289);
 
 	var TodoApp = function (_React$Component) {
 	    _inherits(TodoApp, _React$Component);
@@ -24926,6 +24929,12 @@
 	        _classCallCheck(this, TodoApp);
 
 	        var _this = _possibleConstructorReturn(this, (TodoApp.__proto__ || Object.getPrototypeOf(TodoApp)).call(this, props));
+
+	        _this.componentDidUpdate = function () {
+	            // for each time we change state,
+	            // this will pass the new todos to TodoAPI
+	            TodoAPI.setTodos(_this.state.todos);
+	        };
 
 	        _this.handleAddTodo = function (text) {
 	            _this.setState({
@@ -24984,26 +24993,14 @@
 	        _this.state = {
 	            showCompleted: false,
 	            searchText: '',
-	            todos: [{
-	                id: uuid(),
-	                text: 'walk the dog',
-	                completed: false
-	            }, {
-	                id: uuid(),
-	                text: 'clean the yard',
-	                completed: true
-	            }, {
-	                id: uuid(),
-	                text: 'play video games',
-	                completed: true
-	            }, {
-	                id: uuid(),
-	                text: 'learn web dev',
-	                completed: false
-	            }]
+	            // start app with what is stored in localStorage
+	            todos: TodoAPI.getTodos()
 	        };
 	        return _this;
 	    }
+
+	    //lifecycle method
+
 
 	    return TodoApp;
 	}(React.Component);
@@ -34066,15 +34063,55 @@
 
 /***/ }),
 /* 289 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	// module for fetching and retrieving data
+	// separate from React components
+
+	// methods for localStorage object
+	// getTodos will return a todos array, setTodos will take a todo array
+
+	module.exports = {
+	    setTodos: function setTodos(todos) {
+	        // will get called when we add new todo or toggle a todo
+	        // verify that what I am getting is an array
+	        if (Array.isArray(todos)) {
+	            // localStorage can only store strings
+	            // takes two values - name/value. localStorage is an object
+	            localStorage.setItem('todos', JSON.stringify(todos));
+	            // return a value just to check if the if() condition succeeds
+	            // otherwise, it will return undefined
+	            return todos;
+	        }
+	    },
+	    getTodos: function getTodos() {
+	        // gets called when we start app
+	        var stringTodos = localStorage.getItem('todos');
+	        // set a default todos array that can be returned when localStorage.getItem() fails
+	        var todos = [];
+
+	        // try-catch
+	        try {
+	            todos = JSON.parse(stringTodos);
+	        } catch (e) {}
+
+	        return Array.isArray(todos) ? todos : [];
+	    }
+	};
+
+/***/ }),
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(290);
+	var content = __webpack_require__(291);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(292)(content, {});
+	var update = __webpack_require__(293)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -34091,10 +34128,10 @@
 	}
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(291)();
+	exports = module.exports = __webpack_require__(292)();
 	// imports
 
 
@@ -34105,7 +34142,7 @@
 
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports) {
 
 	/*
@@ -34161,7 +34198,7 @@
 
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*

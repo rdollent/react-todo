@@ -39,7 +39,7 @@ class TodoApp extends React.Component {
                     completed: false
                 }
             ]
-        })
+        });
     }
     
     handleSearch = (showCompleted, searchText) => {
