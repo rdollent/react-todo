@@ -6,6 +6,8 @@ const TodoSearch = require('TodoSearch');
 // used to generate unique ids for todos
 const uuid = require('node-uuid');
 
+const moment = require('moment');
+
 const TodoAPI = require('TodoAPI');
 
 class TodoApp extends React.Component {
@@ -36,7 +38,9 @@ class TodoApp extends React.Component {
                     // use node-uuid to generate unique id
                     id: uuid(),
                     text: text,
-                    completed: false
+                    completed: false,
+                    createdAt: moment().unix(),
+                    completedAt: undefined //we only want to set completedAt when we do handleToggle/todo.completed = true
                 }
             ]
         });
@@ -62,6 +66,8 @@ class TodoApp extends React.Component {
                 // opposite of what's stored i.e. true to false, false to true
                 // if identical ids
                 todo.completed = !todo.completed;
+                // toggles completedAt prop to either undefined or time right now
+                todo.completedAt = todo.completed ? moment().unix(): undefined;
             }
                 
             return todo;
