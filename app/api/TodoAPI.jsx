@@ -51,9 +51,34 @@ module.exports = {
             
         });
         // filter by searchText
+        filteredTodos = filteredTodos.filter((todo) => {
+            //note: array.filter tests against boolean or if
+            // parameter passes a test
+           if(searchText.length > 0) {
+               if((todo.text.toLowerCase()).indexOf(searchText) !== -1) {
+                  return true; 
+               }
+           } else {
+               return true;
+           }
+        });
         
         // Sort todos with non-completed first
+        // sort does not produce a new array, it modifies the existing one
+        filteredTodos.sort((a,b) => {
+            // refer to array.sort in mdn for example
+            // we need completed false to come first or at the top of the list
+            // and have all the completed be at the bottom or our todo list
+            if(a.completed === false && b.completed === true) {
+                return -1;
+            } else if (a.completed === true && b.completed === false){
+                return 1;
+            } else {
+                return 0;
+            }
+        });
         
+        ////////////////////////////
         return filteredTodos;
     }
 };

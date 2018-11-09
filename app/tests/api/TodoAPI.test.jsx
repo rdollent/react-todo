@@ -82,7 +82,52 @@ describe('TodoAPI', () => {
     });
     
     describe('filterTodos', () => {
+        const todos = [{
+            id: 1,
+            text: 'some text here',
+            completed: true
+        }, {
+            id: 2,
+            text: 'other text here',
+            completed: false
+        }, {
+            id: 3,
+            text: 'some text 3rd',
+            completed: true
+        }];
         
-    })
+        it('should return all items if showCompleted is true', () => {
+            const filteredTodos = TodoAPI.filterTodos(todos, true, '');
+            // there are 3 todos
+            // if showcompleted is true, it should show all stored todos
+            expect(filteredTodos.length).toBe(3);
+        });
+        
+        it('should return only incomplete items if showCompleted is false', () => {
+            const filteredTodos = TodoAPI.filterTodos(todos, false, '');
+            expect(filteredTodos.length).toBe(1);
+        });
+        
+        it('should sort by completed status', () => {
+            const filteredTodos = TodoAPI.filterTodos(todos, true, '');
+            // we expect the first entry in the returned filteredTodos array to
+            // have a completed status of false
+            //note: filteredTodos() sorts entries based on completed status
+            // incomplete go first, completed go last
+            
+            expect(filteredTodos[0].completed).toBe(false);
+        });
+        
+        it('should filter todos by searchText', () => {
+            const filteredTodos = TodoAPI.filterTodos(todos, true, 'some');
+            expect(filteredTodos.length).toBe(2);
+        });
+        
+        it('should return all todos if searchText is empty', () => {
+            const filteredTodos = TodoAPI.filterTodos(todos, true, '');
+            expect(filteredTodos.length).toBe(3);
+        });
+        
+    });
 
 })
