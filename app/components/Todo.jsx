@@ -12,6 +12,8 @@ class Todo extends React.Component {
         // there are id and text object props in this.props
         // use es6 destructuring
         const {id, text, completed, createdAt, completedAt} = this.props;
+        // separate todo style classes by whether or not they got completed
+        const todoClassName = completed ? 'todo todo-completed' : 'todo';
         
         // createdAt is stored in unix time
         // need to convert for user
@@ -28,12 +30,17 @@ class Todo extends React.Component {
             return message + moment.unix(timestamp).format('MMM Do YYYY @ h:mm a');
         };
         return (
-            <div onClick={() => {
+            <div className={todoClassName} onClick={() => {
                 this.props.onToggle(id);
             }}>
-                <input type="checkbox" checked={completed}/>
-                <p>{text}</p>
-                <p>{renderDate()}</p>
+                <div>
+                    <input type="checkbox" checked={completed}/>
+                </div>
+                <div>
+                    <p>{text}</p>
+                    <p className="todo__subtext">{renderDate()}</p>
+                </div>
+                
             </div>
         );
     }
