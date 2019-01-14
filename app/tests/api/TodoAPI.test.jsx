@@ -72,7 +72,7 @@ describe('TodoAPI', () => {
            
            // since getTodos() has localStorage.getItem() inside it, we need to first
            // set a valid todos inside localStorage (since we clear out localStorage before every test)
-           localStorage.setItem(JSON.stringify(todos));
+           localStorage.setItem('todos', JSON.stringify(todos));
            
            const actualTodos = TodoAPI.getTodos();
            // note that JSON result from getTodos is already parsed
